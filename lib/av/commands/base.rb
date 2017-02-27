@@ -79,14 +79,14 @@ module Av
         parameters = []
         parameters << @command_name
         parameters << @default_params if @default_params
-        if @input_params
-          parameters << @input_params.to_s
-        end
         parameters << %Q(-i "#{@source}") if @source
         if @output_params
           parameters << @output_params.to_s
         end
         parameters << %Q(-y "#{@destination}") if @destination
+        if @input_params
+          parameters << @input_params.to_s
+        end
         command_line = parameters.flatten.compact.join(" ").strip.squeeze(" ")
         ::Av.run(command_line)
       end
